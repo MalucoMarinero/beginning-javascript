@@ -1,0 +1,64 @@
+@import (inline) "../../node_modules/codemirror/lib/codemirror.css";
+
+.lesson-panel {
+  float:       left;
+  width:       30%;
+  background:  lightblue;
+}
+
+.work-panel {
+  float:  right;
+  width:  70%;
+  background:  lightgreen;
+}
+
+html, body {
+  margin:   0;
+  padding:  0;
+}
+
+#beginning-javascript, body, html,
+.wrapper, .lesson-panel, .work-panel {
+  height: 100%;
+}
+
+
+.worksheet-code {
+  height:  50%;
+  width:   50%;
+  float:   left;
+
+  .cm-s-default {
+    height: 100%;
+  }
+}
+
+.worksheet-results {
+  height:         50%;
+  width:          50%;
+  margin:         0;
+  padding:        4px 0px;
+  float:          right;
+  overflow:       hidden;
+  text-overflow:  ellipsis;
+  font-size:      13px;
+  line-height:    13px;
+  background:     white;
+  color:          #555;
+}
+
+.worksheet-results__line {
+  margin:   0;
+  padding:  0;
+  height:   13px;
+
+  &.is-error {
+    color: red;
+
+  }
+}
+
+.output {
+  clear: both;
+
+}
