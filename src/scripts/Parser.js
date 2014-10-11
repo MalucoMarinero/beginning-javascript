@@ -58,6 +58,9 @@ module.exports.getConsoleOutput = function(code) {
 
 
 module.exports.getParsedLines = function(code) {
+  _log = console.log;
+  window.console.log = function() { };
+
   try {
     var parsed = parseCode(code);
   } catch (e) {
@@ -93,13 +96,16 @@ module.exports.getParsedLines = function(code) {
     if (ast.type == "VariableDeclaration") {
       var decs = ast.declarations.map(function(decl) {
         var varRes = eval(codeTo + "; " + decl.id.name + ";")
-        return decl.id.name + " = " + JSON.stringify(varRes);
+        return {
+          value: varRes,
+          text: decl.id.name + " = " + JSON.stringify(varRes)
+        }
       });
 
       outputLines[ast.loc.start.line-1] = {
         type: ast.type,
         value: decs,
-        text: decs.join(", ")
+        text: _.pluck(decs, "text").join(", ")
       };
     }
 
@@ -154,6 +160,8 @@ module.exports.getParsedLines = function(code) {
 
     ix++;
   }
+
+  window.console.log = _log;
 
   return outputLines;
 };

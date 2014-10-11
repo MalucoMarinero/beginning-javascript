@@ -29,14 +29,15 @@ var watchStyles = [config.src + "/styles/**/*.less"];
 gulp.task("browserify", function() {
   gulp.src(config.src + "/scripts/beginning-javascript.js")
       .pipe(browserify({
-          transform: ["reactify"]
+          transform: ["reactify", "coffeeify"]
       }))
       .pipe(gulp.dest(config.dest + "/scripts"))
       .pipe(connect.reload());
 });
 var watchScripts = [
   config.src + "/scripts/**/*.js",
-  config.src + "/scripts/**/*.jsx"
+  config.src + "/scripts/**/*.jsx",
+  config.src + "/lessons/**/*.coffee"
 ];
 
 gulp.task("server", ["jade", "less", "browserify"], function() {

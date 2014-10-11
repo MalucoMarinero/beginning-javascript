@@ -36,18 +36,18 @@ module.exports = React.createClass({
     renderWorksheetOutput: function(code) {
       var outputLines = Parser.getParsedLines(code);
 
-      return outputLines.map(function(l) {
+      return outputLines.map(function(l, ix) {
         if (l.type == "Error") {
           return (
-            <pre className="worksheet-results__line is-error">{"// " + l.text}</pre>
+            <pre key={ix} className="worksheet-results__line is-error">{"// " + l.text}</pre>
           )
         } else if (l.type != "Blank") {
           return (
-            <pre className="worksheet-results__line">{"// " + l.text}</pre>
+            <pre key={ix} className="worksheet-results__line">{"// " + l.text}</pre>
           )
         } else {
           return (
-            <pre className="worksheet-results__line"></pre>
+            <pre key={ix} className="worksheet-results__line"></pre>
           )
         }
       });

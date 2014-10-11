@@ -2,6 +2,7 @@ var React = require("react/addons");
 var WorkSheet = require("./WorkSheet.jsx");
 var LessonPanel = require("./LessonPanel.jsx");
 var Parser = require("./Parser.js");
+var _ = require("lodash");
 /**
  * @jsx React.DOM
  */
@@ -10,11 +11,54 @@ module.exports = React.createClass({
     displayName: "AppContainer",
 
     getInitialState: function() {
-      return {code: "", currentLesson: null, completedSteps: []};
+      var code = localStorage.getItem("savedCode") || "";
+      var progress = localStorage.getItem("progress") || "[]";
+      var completedSteps = this.deserializeProgress(progress);
+
+      return {
+        code: code,
+        currentLesson: null,
+        completedSteps: completedSteps
+      };
     },
 
     updateCode: function(code) {
       this.setState({code: code});
+    },
+
+    resetAllProgress: function() {
+      localStorage.setItem("savedCode", "");
+      localStorage.setItem("progress", "[]");
+      window.location.reload();
+    },
+
+    deserializeProgress: function(progress) {
+      var _this = this;
+      return JSON.parse(progress).map(function(stepIx) {
+        var ixes = stepIx.split(":"),
+            lIx = parseInt(ixes[0]),
+            sIx = parseInt(ixes[1]);
+
+        return _this.props.lessons[lIx].steps[sIx];
+      });
+    },
+
+    serializeProgress: function(completedSteps) {
+      return JSON.stringify(_.flatten(
+        this.props.lessons.map(function(l, lIx) {
+          return l.steps.filter(function(step) {
+            return completedSteps.indexOf(step) != -1;
+          }).map(function(step, sIx) {
+            return lIx + ":" + sIx;
+          });
+        })
+      ));
+    },
+
+    saveProgress: function(completedSteps, code) {
+      localStorage.setItem("savedCode", code);
+      var progress = this.serializeProgress(completedSteps);
+      localStorage.setItem("progress", progress);
     },
 
     componentDidUpdate: function(prevP, prevS) {
@@ -32,7 +76,10 @@ module.exports = React.createClass({
           }
         });
 
-        if (newComps > 0) this.setState({completedSteps: steps});
+        if (newComps > 0) {
+          this.saveProgress(steps, this.state.code);
+          this.setState({completedSteps: steps});
+        }
       }
     },
 
@@ -47,6 +94,7 @@ module.exports = React.createClass({
             currentLesson={this.state.currentLesson}
             completedSteps={this.state.completedSteps}
             setLesson={this.setLesson}
+            resetAllProgress={this.resetAllProgress}
             lessons={this.props.lessons}
           />
           <WorkSheet
