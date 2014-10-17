@@ -13,17 +13,15 @@ var stringVariable = "It's a stringy world."
 var upperCaseVariable = stringVariable.toUpperCase()
 ```
 
-Or, you could write the same thing this way:
+Take your `myString` variable from the last lesson and output it the console, using `.toUpperCase()`.
 
 ```javascript
-var upperCaseVariable = "It's a stringy world.".toUpperCase()
+console.log(myString.toUpperCase());
 ```
 
-For this lesson, print the variable you created in the previous lesson in UpperCase using the string object's `.toUpperCase()` method.
 """
-
 test: (repl, cons) ->
-  cons.some (cLine) -> cLine == "\"It's a stringy world.\"".toUpperCase()
+  cons.some (cLine) -> cLine == "\"MY GREAT STRING\"".toUpperCase()
 
 solution: """
 Right on!
@@ -35,10 +33,23 @@ So, everything is an object, that means you should be able to create new objects
 ```javascript
 var myObject = { 
   property: "Just another string."
-}
-console.log(myObject.property)
+};
 ```
 
+Try creating the object above, and then log out its string using:
+
+```javascript
+console.log(myObject.property);
+```
+"""
+test: (repl, cons) ->
+  cons.some (cLine) -> cLine == "\"Just another string.\""
+
+solution: """
+Great!
+"""
+},{
+problem: """
 You may not have noticed, but you've been using an object this whole time: `console`. The `log()` function is actually a property of the console object which you access using the "dot syntax." You can access properties of any object using like this.
 
 You can also access properties using another syntax with brackets.
@@ -58,7 +69,7 @@ var myObject = {
 }
 ```
 
-If we were to try and access that property using the "dot syntax" we would get a synax error. This also means we can use variables with strings to access properties.
+If we were to try and access that property using the "dot syntax" we would get a syntax error. This also means we can use variables with strings to access properties.
 
 ```javascript
 var myObject = {
@@ -73,10 +84,11 @@ For this lesson, create a new object with a property that contains the string fr
 
 test: (repl, cons) ->
   # TODO: should check for the existance of the object here also
-  cons.some (cLine) -> cLine == "\"It's a stringy world.\"".toUpperCase()
+  return true
+  # cons.some (cLine) -> cLine == "\"It's a stringy world.\"".toUpperCase()
 
 solution: """
-Right on!
+Let's move onto functions.
 """
 }]
 }
