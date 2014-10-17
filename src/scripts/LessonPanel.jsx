@@ -1,5 +1,8 @@
 var React = require("react/addons");
-var marked = require("marked");
+var ultramarked = require("ultramarked");
+var options = {
+  ultralight: true
+};
 var _ = require("lodash");
 /**
  * @jsx React.DOM
@@ -66,13 +69,13 @@ module.exports = React.createClass({
         <div
           className="lesson-step__problem"
           dangerouslySetInnerHTML={{
-              __html: marked(step.problem)
+              __html: ultramarked(step.problem, options)
           }}
         />
         <div
           className="lesson-step__solution"
           dangerouslySetInnerHTML={{
-              __html: marked(step.solution)
+              __html: ultramarked(step.solution, options)
           }}
         />
         </li>
