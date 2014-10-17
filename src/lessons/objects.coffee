@@ -33,7 +33,9 @@ problem: """
 So, everything is an object, that means you should be able to create new objects with nothing but what you would like to have in them :)
 
 ```javascript
-var myObject = { property: "Just another string." }
+var myObject = { 
+  property: "Just another string."
+}
 console.log(myObject.property)
 ```
 
@@ -42,20 +44,26 @@ You may not have noticed, but you've been using an object this whole time: `cons
 You can also access properties using another syntax with brackets.
 
 ```javascript
-var myObject = { property: "Just another string." }
+var myObject = { 
+  property: "Just another string."
+}
 console.log(myObject["property"])
 ```
 
 This syntax takes a string as the property which is very useful because when property names have spaces or special characters that we can't access them using the "dot syntax." For instance, we can create an object like this:
 
 ```javascript
-var myObject = {"my property": "Just another string."}
+var myObject = {
+  "my property": "Just another string."
+}
 ```
 
 If we were to try and access that property using the "dot syntax" we would get a synax error. This also means we can use variables with strings to access properties.
 
 ```javascript
-var myObject = {"my property": "Just another string."}
+var myObject = {
+  "my property": "Just another string."
+}
 var name = "my property"
 console.log(myObject[name])
 ```
