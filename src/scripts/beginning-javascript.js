@@ -13,6 +13,7 @@ var Arrays = require("../lessons/arrays.coffee");
 var Next = require("../lessons/next-steps.coffee");
 
 React.renderComponent(AppContainer({
-  "lessons": [HelloWorld, Strings, Variables, Objects, Functions, Arrays, Next]
+  "lessons": [
+    HelloWorld, Variables, Strings, Objects, Functions, Arrays, Next]
 }), homeNode);
 

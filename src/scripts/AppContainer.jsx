@@ -64,6 +64,7 @@ module.exports = React.createClass({
     componentDidUpdate: function(prevP, prevS) {
       var consoleOut = Parser.getConsoleOutput(this.state.code);
       var replOut = Parser.getParsedLines(this.state.code);
+      localStorage.setItem("savedCode", this.state.code);
 
       var steps = this.state.completedSteps.concat();
       var newComps = 0;

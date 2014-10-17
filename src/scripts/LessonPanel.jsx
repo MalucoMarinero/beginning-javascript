@@ -11,6 +11,13 @@ var _ = require("lodash");
 module.exports = React.createClass({
     displayName: "LessonPanel",
 
+    componentDidUpdate: function() {
+      var el = this.getDOMNode();
+      el.style.cssText += ';-webkit-transform:rotateZ(0deg)'
+      el.offsetHeight
+      el.style.cssText += ';-webkit-transform:none'
+    },
+
     render: function() {
       var _this = this;
 
