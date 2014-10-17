@@ -4,28 +4,20 @@ module.exports = {
 title: "Hello World!"
 steps: [{
 problem: """
-## So you wanna learn javascript?
+Welcome to JavaScript, you're gonna love it :)
 
-Let's start off by doing console.log "Hello World".
+The first thing you should learn is how to print things. Printing things is the best way to debug your programs and learn what might be going on. In JavaScript you can use `console.log` to print *almost* anything.
+
+Using the worksheet copy or manually type the following code in to it:
+
+```javascript
+console.log("Hello World!")
+```
+ 
 """
 
 test: (repl, cons) ->
-  cons.some (cLine) -> cLine == "\"Hello World\""
-
-solution: """
-Right on!
-"""
-}, {
-
-
-
-problem: """
-Bind 15 to variable named **a**
-"""
-
-test: (repl, cons) ->
-  repl.some (line) ->
-    line.type == "VariableDeclaration" and line.text == "a = 15"
+  cons.some (cLine) -> cLine == "\"Hello World!\""
 
 solution: """
 Right on!
