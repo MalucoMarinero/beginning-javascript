@@ -11,13 +11,17 @@ We call things that perform actions like this functions because, well, they serv
 There are many ways to create functions. One is to assign them to variables:
 
 ```javascript
-var myFunction = function () { console.log('Hello World!') }
+var myFunction = function () {
+  console.log('Hello World!')
+}
 ```
 
 Another is to name the function:
 
 ```javascript
-function myFunction () { console.log('Hello World!') }
+function myFunction () {
+  console.log('Hello World!')
+}
 ```
 
 Both ways allow us to easily refer to this behavior over and over again:
