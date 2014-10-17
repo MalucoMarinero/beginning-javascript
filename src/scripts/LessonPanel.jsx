@@ -35,7 +35,7 @@ module.exports = React.createClass({
       } else {
         return (
           <section className="lesson-panel">
-          <h1>Beginning Javascript</h1>
+          <h1>Welcome to JavaScript</h1>
           <ul className="lessons">{this.renderLessons()}</ul>
           <br />
           <a onClick={this.props.resetAllProgress}>Reset All Progress</a>
