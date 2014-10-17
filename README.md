@@ -2,7 +2,7 @@ Do:
 
 ```
 npm install
-gulp
+npm start
 ```
 
 All lessons heavily infulenced by [Mikeal Rogers'](https://github.com/mikeal) workshop [LearnJS](https://github.com/mikeal/learnjs).
