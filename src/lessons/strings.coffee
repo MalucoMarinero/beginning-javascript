@@ -10,14 +10,39 @@ In JavaScript a bunch of letters, numbers, words or anything else is known as a 
 "It's a stringy world."
 ```
 
-For this lesson, change the `console.log()` you did in the last lesson to print `"It's a stringify world."`.
+Make a variable called `myString` with the string `"My Great String"`.
 """
 
 test: (repl, cons) ->
-  cons.some (cLine) -> cLine == "\"It's a stringify world.\""
+  repl.some (line) ->
+    line.type == "VariableDeclaration" and line.text == "myString = \"My Great String\""
 
 solution: """
-Right on!
+## Yeah, that's it.
+"""
+}, {
+problem: """
+You can also add strings together. Make another variable called `myOtherString` with the string `"Another Great String"`.
+
+Then add them together on the console:
+
+```javascript
+console.log(myString + myOtherString);
+```
+"""
+
+test: (repl, cons) ->
+  (
+    repl.some (line) ->
+      line.type == "VariableDeclaration" and line.text == "myOtherString = \"Another Great String\""
+  ) and (
+    cons.some (cLine) -> cLine == "\"My Great StringAnother Great String\""
+  )
+
+solution: """
+## Great!
+
+Let's move onto objects in the next lesson.
 """
 }]
 }
