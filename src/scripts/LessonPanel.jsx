@@ -31,15 +31,20 @@ module.exports = React.createClass({
           ? lesson.steps[lesson.steps.indexOf(latestCompleted) + 1]
           : lesson.steps[0];
 
+        var stepCount = lesson.steps.length;
+        var completedCount = _this.getCompletedCount(lesson.steps);
+
         return (
           <section className="lesson-panel">
-          <a onClick={function() { _this.props.setLesson(null) }}>Back</a>
+          <a onClick={function() { _this.props.setLesson(null) }}>Lesson index</a>
           <h2>{lesson.title}</h2>
           <ul className="lesson-steps">
           {lesson.steps.map(function(step, ix) {
               return _this.renderStep(step, ix, step == nextStep);
           })}
           </ul>
+          <a className={stepCount == completedCount ? "show" : "hide"}
+             onClick={function() { _this.props.setLesson(null) }}>Lesson index</a>
           </section>
         )
       } else {
@@ -89,17 +94,20 @@ module.exports = React.createClass({
       )
     },
 
+    getCompletedCount: function(steps) {
+      var _this = this;
+
+      return steps.filter(function(step) {
+        return _this.props.completedSteps.indexOf(step) != -1;
+      }).length;
+    },
+
     renderLessons: function() {
       var _this = this;
-      var getCompletedCount = function(steps) {
-        return steps.filter(function(step) {
-          return _this.props.completedSteps.indexOf(step) != -1;
-        }).length;
-      };
 
       return this.props.lessons.map(function(lesson, ix) {
         var stepCount = lesson.steps.length;
-        var completedCount = getCompletedCount(lesson.steps);
+        var completedCount = _this.getCompletedCount(lesson.steps);
         var lessonClasses = {
           "lesson": true,
           "is-in-progress": completedCount > 0 && completedCount < stepCount,
