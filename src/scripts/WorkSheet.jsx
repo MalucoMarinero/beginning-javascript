@@ -24,6 +24,7 @@ module.exports = React.createClass({
       var _this = this;
       var editorArea = this.refs.codeMirror.getDOMNode()
       CodeMirror.fromTextArea(editorArea, {
+        lineNumbers: true,
         styleActiveLine: true,
         mode: "javascript"
       }).on("change", this.onCmChange);
