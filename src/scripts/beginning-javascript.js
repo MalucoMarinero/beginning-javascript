@@ -15,3 +15,4 @@ var Next = require("../lessons/next-steps.coffee");
 React.renderComponent(AppContainer({
   "lessons": [HelloWorld, Strings, Variables, Objects, Functions, Arrays, Next]
 }), homeNode);
+

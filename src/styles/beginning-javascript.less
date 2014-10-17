@@ -1,4 +1,16 @@
 @import (inline) "../../node_modules/codemirror/lib/codemirror.css";
+@import (inline) "../../node_modules/ultramarked/node_modules/highlight.js/styles/github.css";
+
+.hljs {
+  display: inline;
+  border-radius: 3px;
+  padding: 0.3em;
+}
+
+pre .hljs {
+  display: block;
+  padding: 0.5em;
+}
 
 .lesson-panel {
   float:       left;
@@ -16,6 +28,7 @@ html, body {
   margin:       0;
   padding:      0;
   font-family:  sans-serif;
+  line-height: 1.5em;
 }
 
 a {
@@ -27,6 +40,7 @@ a {
 #beginning-javascript, body, html,
 .wrapper, .lesson-panel, .work-panel {
   height: 100%;
+  overflow: hidden;
 }
 
 
@@ -37,6 +51,7 @@ a {
 
   .cm-s-default {
     height: 100%;
+    padding: 0 0 4px;
   }
 }
 
@@ -44,10 +59,9 @@ a {
   height:         50%;
   width:          50%;
   margin:         0;
-  padding:        4px 0px;
+  padding:        4px 0 0;
+  overflow:       scroll;
   float:          right;
-  overflow:       hidden;
-  text-overflow:  ellipsis;
   font-size:      13px;
   line-height:    13px;
   background:     white;
@@ -66,7 +80,9 @@ a {
 }
 
 .output {
+  max-height: 100%;
   clear: both;
+  overflow: scroll;
 
 }
 
